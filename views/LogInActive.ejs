@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="LoginSign.css">
+  </link>
+  <script src="LoginSign.js" defer></script>
+  <title>Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      background-image: url("./image.jpg");
+      background-size: cover;
+      background-color: rgb(9, 9, 9);
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      align-items: center;
+    }
+
+    .form-1 {
+      width: 380px;
+      height: 480px;
+      position: relative;
+      margin: 6% auto;
+      background-color: rgb(251, 248, 248);
+      padding: 5px;
+      border-radius: 20px;
+    }
+
+    .botton-box {
+      width: 220px;
+      margin: 35px auto;
+      position: relative;
+      box-shadow: 0px 0px 20px 9px rgb(28, 156, 212);
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .btn {
+      padding: 10px 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: none;
+      position: relative;
+      color: rgb(3, 3, 3);
+    }
+
+    #btn1 {
+      border-radius: 20px;
+      width: 110px;
+      background-color: aqua;
+    }
+
+    #btn2 {
+      border-radius: 20px;
+      width: 110px;
+
+    }
+
+
+    .form {
+      top: 180px;
+      position: absolute;
+      width: 280px;
+      transition: .5s;
+      margin-left: px;
+    }
+
+
+    .input-filed {
+      width: 100%;
+      margin-top: 10px;
+      padding-top: 15px;
+      padding-bottom: 5px;
+      border-left: 0px;
+      border-right: 0px;
+      border-top: 0px;
+      border-bottom: 1px solid #999999;
+      outline: none;
+      background: transparent;
+      transform: translateY(-50%);
+      transition: all 0.5 ease-in-put;
+    }
+
+    .submit-button {
+      width: 80%;
+      padding: 10px 3px;
+      cursor: pointer;
+      display: block;
+      margin-left: 30px;
+      border: 0;
+      background: linear-gradient(to right, #1c9cd4, #18aded);
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .check-box {
+      margin: 10px 10px 10px 0px;
+    }
+
+    span {
+      font-size: 14px;
+      color: #7c6f6f;
+      bottom: 85px;
+      position: absolute;
+    }
+
+    #Log-In {
+      left: 50px;
+
+    }
+
+    #Sign-Up {
+      left: 450px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="allblock">
+    <div class="form-1">
+
+
+      <div class="botton-box">
+        <a href="/logIn" id="btn1"><button type="button" class="btn" onclick="Login()"> Log In</button></a>
+        <a href="/signUp" id="btn2"><button type="button" class="btn" onclick="SignUp()"> Sign Up</button></a>
+      </div>
+
+      <%if(invalidEmailBool==0){%>
+        <center>
+          <h5 style="color:red;
+        font-family: Arial;">Invalid Email</h5>
+        </center>
+        <%}%>
+          <%if(invalidPasswordBool==0){%>
+            <center>
+              <h5 style="color:red;
+        font-family: Arial;">Wrong Password</h5>
+            </center>
+            <%}%>
+
+              <div class="box">
+                <div id="sign-up-hide">
+                  <form id="Sign-Up" class="form" method="POST" action="signUp">
+                    <div class="userpass">
+                      <input class="input-filed" type=" phone number" placeholder="Name" name="inputName" required>
+                      <input class="input-filed" type="email" placeholder="E-mail" name="inputEmail" required>
+                      <input class="input-filed" type="text" placeholder="Password" name="inputPassword" required>
+                    </div>
+                    <div class="submit-button" style="margin-top: 20px !important;">
+                      <button class="submit-button" type="submit" style="margin-top: 20px;">Sign Up</button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+
+
+
+              <div id="login-hide">
+                <form id="Log-In" class="form" method="POST" action="/logIn">
+                  <div class="userpass">
+                    <input class="input-filed" id=" IN" type="email" placeholder="Email" name="inputEmail" required>
+                    <input placeholder="Password" type="password" name="inputPassword" class="input-filed" id="PASS"
+                      required>
+                  </div>
+                  <a href="/forgotPassword"
+                    style="font-family: Arial;font-size: 12px;margin-bottom: 20px;color:rgb(211, 13, 13);font-weight: 700;">Forgot
+                    Password ?</a>
+                  <div style="margin-bottom: 20px;margin-top: 10px;">
+                    <input type="checkbox" class="check-box" onclick="myfunction()"><span
+                      style="font-family: Arial;font-size: 12px;">Show Password</span>
+                  </div>
+                  <div class="submit-button">
+                    <button class="submit-button" type="submit">Log In</button>
+                  </div>
+
+                </form>
+              </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var sign = document.getElementById("Sign-Up")
+    var log = document.getElementById("Log-In")
+
+    function Login() {
+      const color2 = document.getElementById("btn2");
+      const color1 = document.getElementById("btn1");
+      color1.style.backgroundColor = "aqua";
+      color2.style.backgroundColor = "white";
+      sign.style.left = "450px";
+      log.style.left = "50px";
+      if (color2.style.backgroundColor === "aqua") {
+        color2.style.backgroundColor = "white";
+      }
+    }
+
+    function SignUp() {
+      const color2 = document.getElementById("btn2");
+      const color1 = document.getElementById("btn1");
+      color2.style.backgroundColor = "aqua";
+      color1.style.backgroundColor = "white";
+      sign.style.left = "50px";
+      log.style.left = "450px";
+      if (color1.style.backgroundColor === "aqua") {
+        color1.style.backgroundColor = "white";
+      }
+    }
+
+    function myfunction() {
+      let sign = document.getElementById("PASS");
+      if (sign.type === "password") {
+
+        sign.type = "text";
+
+      }
+      else {
+
+        sign.type = "password";
+
+      }
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

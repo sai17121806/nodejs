@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="LoginSign.css">
+  </link>
+  <script src="hello.js" defer></script>
+  <title>Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      background-color: rgb(9, 9, 9);
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      align-items: center;
+      background-image: url("./image.jpg");
+      background-size: cover;
+    }
+
+    .form-1 {
+      width: 380px;
+      height: 480px;
+      position: relative;
+      margin: 6% auto;
+      background-color: rgb(251, 248, 248);
+      padding: 5px;
+      border-radius: 20px;
+    }
+
+    .botton-box {
+      width: 220px;
+      margin: 35px auto;
+      position: relative;
+      box-shadow: 0px 0px 20px 9px rgb(28, 156, 212);
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .btn {
+      padding: 10px 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: none;
+      position: relative;
+      color: rgb(3, 3, 3);
+    }
+
+    #btn1 {
+      border-radius: 20px;
+      width: 110px;
+    }
+
+    #btn2 {
+      border-radius: 20px;
+      width: 110px;
+      background-color: aqua;
+    }
+
+
+    .form {
+      top: 180px;
+      position: absolute;
+      width: 280px;
+      transition: .5s;
+      margin-left: px;
+    }
+
+
+    .input-filed {
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
+      border-left: 0px;
+      border-right: 0px;
+      border-top: 0px;
+      border-bottom: 1px solid #999999;
+      outline: none;
+      background: transparent;
+      transform: translateY(-50%);
+      transition: all 0.5 ease-in-put;
+    }
+
+    .submit-button {
+      width: 80%;
+      padding: 10px 3px;
+      cursor: pointer;
+      display: block;
+      margin-left: 30px;
+      border: 0;
+      background: linear-gradient(to right, #1c9cd4, #18aded);
+      outline: none;
+      border-radius: 30px;
+      position: relative;
+    }
+
+    .check-box {
+      margin: 10px 10px 10px 0;
+    }
+
+    span {
+      font-size: 14px;
+      color: #7c6f6f;
+      bottom: 85px;
+      position: absolute;
+    }
+
+    #Log-In {
+      left: 450px;
+
+    }
+
+    #Sign-Up {
+      left: 50px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #verify {
+      position: absolute;
+      top: 45px;
+      left: 235px;
+      font-family: 'Arial';
+      font-weight: 700;
+      font-size: 12px;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-1">
+
+
+    <div class="botton-box">
+      <a href="/logIn" id="btn1"><button type="button" class="btn" onclick="Login()"> Log In</button></a>
+      <a href="/signUp" id="btn2"><button type="button" class="btn" onclick="SignUp()"> Sign Up</button></a>
+    </div>
+
+    <%if(mailBool==0){%>
+      <center>
+        <h5 style="color:red;
+      font-family: Arial;">Email Already Exists</h5>
+      </center>
+      <%}%>
+
+        <div class="box">
+          <form id="Sign-Up" class="form" method="POST" action="/verifyEmail">
+            <div class="userpass">
+              <input class="input-filed" type=" phone number" placeholder="Name" name="inputName" id="names" required>
+              <input class="input-filed" type="email" placeholder="E-mail" name="inputEmail" required>
+              <button id="verify" onclick="verifyEmail()" type="submit">Verify</button>
+          </form>
+
+          <h5 style="font-family: 'Arial';
+              padding-bottom: 15px; color:green;display:none;" id="otpText">Enter OTP
+          </h5>
+          <form action="/verifyOTP" method="post">
+            <input placeholder="OTP" class="input-filed" name="inputOTP" style="display: none;" id="otpIn" required>
+            <input id="pass" class="input-filed" type="password" placeholder="Password" name="inputPassword" required>
+
+            <input type="checkbox" class="check-box" onclick="myfunction()"><span style="font-family: Arial;font-size: 12px;">Show Password</span>
+
+            <button type="submit" class="submit-button" style="margin-top: 20px;">
+              <a class="submit-button" style="font-family: 'Arial';margin-left:20px">
+                <center>Sign Up</center>
+              </a>
+            </button>
+          </form>
+        </div>
+  </div>
+
+
+
+  <div id="login-hide">
+    <form id="Log-In" class="form" method="POST" action="/logIn">
+      <div class="userpass">
+        <input class="input-filed" type="text" placeholder="Email" name="inputEmail" required>
+        <input class="input-filed" id="PASS" placeholder="Password" type="password" name="inputPassword" required>
+      </div>
+      <input type="checkbox" class="check-box" onclick="myfunction()"><span>Show Password</span>
+      <div class="submit-button">
+        <button class="submit-button" type="submit">Log In</button>
+      </div>
+
+    </form>
+  </div>
+  </div>
+
+
+
+  <script>
+
+    var sign = document.getElementById("Sign-Up")
+    var log = document.getElementById("Log-In")
+
+    function Login() {
+      const color2 = document.getElementById("btn2");
+      const color1 = document.getElementById("btn1");
+      color1.style.backgroundColor = "aqua";
+      color2.style.backgroundColor = "white";
+      sign.style.left = "450px";
+      log.style.left = "50px";
+      if (color2.style.backgroundColor === "aqua") {
+        color2.style.backgroundColor = "white";
+      }
+    }
+
+    function SignUp() {
+      const color2 = document.getElementById("btn2");
+      const color1 = document.getElementById("btn1");
+      color2.style.backgroundColor = "aqua";
+      color1.style.backgroundColor = "white";
+      sign.style.left = "50px";
+      log.style.left = "450px";
+      if (color1.style.backgroundColor === "aqua") {
+        color1.style.backgroundColor = "white";
+      }
+    }
+
+    function myfunction() {
+      let sign = document.getElementById("pass");
+      if (sign.type === "password") {
+        sign.type = "text";
+      }
+      else {
+        sign.type = "password";
+      }
+    }
+
+    function verifyEmail() {
+      const otpText = document.querySelector("#otpText");
+      const otpIn = document.querySelector("#otpIn");
+      otpText.style.display = "block";
+      otpIn.style.display = "block";
+    }
+
+
+  </script>
+</body>
+
+</html>
