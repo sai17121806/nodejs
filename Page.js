@@ -223,14 +223,14 @@ app.post("/forgotVerifyEmail", (req, res) => {
 app.post("/forgotVerifyOTP", (req, res) => {
         if (req.body.inputOTP == otpGenerate) {
 
-                res.render("createNewPassword", { inputEmail, inputOTP, forgotEmailBool: 1, forgotOTPBool: 1 });
+                res.render("CreateNewPassword", { inputEmail, inputOTP, forgotEmailBool: 1, forgotOTPBool: 1 });
         }
         else {
                 res.render("forgotPassword", { inputEmail, inputOTP, forgotEmailBool: 1, forgotOTPBool: 0 });
         }
 });
 
-app.post("/createNewPassword", (req, res) => {
+app.post("/CreateNewPassword", (req, res) => {
 
         bcryptjs.genSalt(10, function (error, Salt) {
                 if (error)
